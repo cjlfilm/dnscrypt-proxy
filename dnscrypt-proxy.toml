@@ -1,0 +1,109 @@
+# dnscrypt-proxy toml
+server_names = ['ams-dnscrypt-nl','cs-austria','cs-belgium','cs-berlin','cs-dus1','cs-dus4','cs-ireland','cs-madrid','cs-manchester','cs-nl']
+listen_addresses = ['127.0.0.1:53']
+max_clients = 250
+ipv4_servers = true
+ipv6_servers = false
+dnscrypt_servers = true
+doh_servers = true
+odoh_servers = false
+require_dnssec = false
+require_nolog = true
+require_nofilter = true
+force_tcp = false
+http3 = false
+timeout = 5000
+keepalive = 30
+use_syslog = true
+cert_refresh_delay = 240
+bootstrap_resolvers = ['9.9.9.11:53', '149.112.112.11:53']
+ignore_system_dns = true
+netprobe_timeout = 60
+netprobe_address = '9.9.9.9:53'
+log_files_max_size = 10
+log_files_max_age = 7
+log_files_max_backups = 1
+block_ipv6 = false
+block_unqualified = true
+block_undelegated = true
+reject_ttl = 10
+cache = true
+cache_size = 4096
+cache_min_ttl = 2400
+cache_max_ttl = 86400
+cache_neg_min_ttl = 60
+cache_neg_max_ttl = 600
+[captive_portals]
+[local_doh]
+[query_log]
+format = 'tsv'
+[nx_log]
+format = 'tsv'
+[blocked_names]
+[blocked_ips]
+[allowed_names]
+[allowed_ips]
+[schedules]
+  # [schedules.time-to-sleep]
+  #   mon = [{after='21:00', before='7:00'}]
+  #   tue = [{after='21:00', before='7:00'}]
+  #   wed = [{after='21:00', before='7:00'}]
+  #   thu = [{after='21:00', before='7:00'}]
+  #   fri = [{after='23:00', before='7:00'}]
+  #   sat = [{after='23:00', before='7:00'}]
+  #   sun = [{after='21:00', before='7:00'}]
+  # [schedules.work]
+  #   mon = [{after='9:00', before='18:00'}]
+  #   tue = [{after='9:00', before='18:00'}]
+  #   wed = [{after='9:00', before='18:00'}]
+  #   thu = [{after='9:00', before='18:00'}]
+  #   fri = [{after='9:00', before='17:00'}]
+[sources]
+  ### An example of a remote source from https://github.com/DNSCrypt/dnscrypt-resolvers
+  [sources.public-resolvers]
+    urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md', 'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md']
+    cache_file = '/var/cache/dnscrypt-proxy/public-resolvers.md'
+    minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+    refresh_delay = 72
+    prefix = ''
+  ### Anonymized DNS relays
+  [sources.relays]
+    urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/relays.md', 'https://download.dnscrypt.info/resolvers-list/v3/relays.md']
+    cache_file = '/var/cache/dnscrypt-proxy/relays.md'
+    minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+    refresh_delay = 72
+    prefix = ''
+  ### ODoH (Oblivious DoH) servers and relays
+  # [sources.odoh-servers]
+  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-servers.md', 'https://download.dnscrypt.info/resolvers-list/v3/odoh-servers.md']
+  #   cache_file = '/var/cache/dnscrypt-proxy/odoh-servers.md'
+  #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+  #   refresh_delay = 24
+  #   prefix = ''
+  # [sources.odoh-relays]
+  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-relays.md', 'https://download.dnscrypt.info/resolvers-list/v3/odoh-relays.md']
+  #   cache_file = '/var/cache/dnscrypt-proxy/odoh-relays.md'
+  #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+  #   refresh_delay = 24
+  #   prefix = ''
+  ### Quad9
+  # [sources.quad9-resolvers]
+  #   urls = ['https://www.quad9.net/quad9-resolvers.md']
+  #   minisign_key = 'RWQBphd2+f6eiAqBsvDZEBXBGHQBJfeG6G+wJPPKxCZMoEQYpmoysKUN'
+  #   cache_file = '/var/cache/dnscrypt-proxy/quad9-resolvers.md'
+  #   prefix = 'quad9-'
+  ### Another example source, with resolvers censoring some websites not appropriate for children
+  ### This is a subset of the `public-resolvers` list, so enabling both is useless.
+  # [sources.parental-control]
+  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/parental-control.md', 'https://download.dnscrypt.info/resolvers-list/v3/parental-control.md']
+  #   cache_file = '/var/cache/dnscrypt-proxy/parental-control.md'
+  #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+[broken_implementations]
+fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familyshield-ipv6', 'cleanbrowsing-adult', 'cleanbrowsing-adult-ipv6', 'cleanbrowsing-family', 'cleanbrowsing-family-ipv6', 'cleanbrowsing-security', 'cleanbrowsing-security-ipv6']
+[doh_client_x509_auth]
+[anonymized_dns]
+skip_incompatible = false
+[dns64]
+[static]
+  # [static.myserver]
+  #   stamp = 'sdns://AQcAAAAAAAAAAAAQMi5kbnNjcnlwdC1jZXJ0Lg'
