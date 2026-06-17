@@ -105,8 +105,6 @@ skip_incompatible = true
 [broken_implementations]
 fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familyshield-ipv6', 'cleanbrowsing-adult', 'cleanbrowsing-adult-ipv6', 'cleanbrowsing-family', 'cleanbrowsing-family-ipv6', 'cleanbrowsing-security', 'cleanbrowsing-security-ipv6']
 [doh_client_x509_auth]
-[anonymized_dns]
-skip_incompatible = false
 [dns64]
 [static]
   # [static.myserver]
