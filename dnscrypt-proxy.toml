@@ -1,7 +1,5 @@
 # dnscrypt-proxy toml
-
-server_names = ['cs-nl','cs-belgium','quad9-dnscrypt-ip4-filter-pri','mullvad-dnscrypt','dnsforge-de']
-#server_names = ['ams-dnscrypt-nl','cs-austria','cs-belgium','cs-berlin','cs-dus1','cs-dus4','cs-ireland','cs-madrid','cs-manchester','cs-nl']
+server_names = ['ams-dnscrypt-nl','cs-austria','cs-belgium','cs-berlin','cs-dus1','cs-dus4','cs-ireland','cs-madrid','cs-manchester','cs-nl']
 listen_addresses = ['0.0.0.0:53']
 max_clients = 250
 ipv4_servers = true
@@ -11,7 +9,7 @@ doh_servers = true
 odoh_servers = false
 require_dnssec = true
 require_nolog = true
-require_nofilter = true
+require_nofilter = false
 force_tcp = false
 http3 = false
 timeout = 5000
@@ -104,6 +102,3 @@ skip_incompatible = true
 fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familyshield-ipv6', 'cleanbrowsing-adult', 'cleanbrowsing-adult-ipv6', 'cleanbrowsing-family', 'cleanbrowsing-family-ipv6', 'cleanbrowsing-security', 'cleanbrowsing-security-ipv6']
 [doh_client_x509_auth]
 [dns64]
-[static]
-  # [static.myserver]
-  #   stamp = 'sdns://AQcAAAAAAAAAAAAQMi5kbnNjcnlwdC1jZXJ0Lg'
