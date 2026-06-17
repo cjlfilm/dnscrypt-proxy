@@ -38,3 +38,17 @@ podman run -d --rm -p 53:53/tcp -p 53:53/udp localhost/dnscrypt-proxy
 ```bash
 dig @127.0.0.1 -p 53 www.google.com
 ```
+
+## 7. Run as a service
+Put the service file in the users systemd directory
+```bash
+~/.config/systemd/user/container-dnscrypt-proxy.service
+```
+Then reload the user systemd daemon
+```bash
+systemctl --user daemon-reload
+```
+Enable linger so it can run without login session
+```bash
+loginctl enable-linger $USER
+```
