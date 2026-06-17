@@ -2,7 +2,7 @@
 
 server_names = ['cs-nl','cs-belgium','quad9-dnscrypt-ip4-filter-pri','mullvad-dnscrypt','dnsforge-de']
 #server_names = ['ams-dnscrypt-nl','cs-austria','cs-belgium','cs-berlin','cs-dus1','cs-dus4','cs-ireland','cs-madrid','cs-manchester','cs-nl']
-listen_addresses = ['127.0.0.1:53']
+listen_addresses = ['0.0.0.0:53']
 max_clients = 250
 ipv4_servers = true
 ipv6_servers = false
@@ -35,8 +35,6 @@ cache_min_ttl = 60
 cache_max_ttl = 86400
 cache_neg_min_ttl = 60
 cache_neg_max_ttl = 600
-ilb_strategy = 'p2'
-max_server_latency = 1500
 [anonymized_dns]
 skip_incompatible = true
 [captive_portals]
